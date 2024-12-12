@@ -24,9 +24,12 @@ This template overcomes these issues by including all necessary files and config
 The template is organized as follows:
 
 ```
-workspace/
-├── include/        # Contains graphics.h and winbgi.h
-├── lib/            # Contains libbgi.a
+graphics template/
+├── include/        # Contains header files
+│   ├── graphics.h
+│   ├── winbgi.h
+├── lib/            # Contains static libraries
+│   ├── libbgi.a
 ├── src/            # Source files go here (e.g., main.cpp)
 ├── build/          # Compiled binaries will be generated here
 ├── .vscode/        # VS Code configurations
@@ -76,7 +79,7 @@ Simply place your C++ source files inside the `src/` folder, and the template wi
 ## Follow Me on GitHub
 
 If you find this template useful, consider following me on GitHub for more projects and resources:
-[GitHub Profile](https://github.com/AakrishtSP)
+[Github: AakrishtSP](https://github.com/AakrishtSP)
 
 ## Additional Notes
 
