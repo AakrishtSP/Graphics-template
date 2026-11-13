@@ -1,13 +1,29 @@
-// Turbo C++ style graphics.h demo. Press a key (or close the window) to exit.
+// Turbo C++ style graphics.h demo. Press a key, close the window or Ctrl+C
+// to exit.
 //
-// Build and run:   ./run.sh          (Windows: .\run.ps1)
+// Build and run:   ./run.sh          (Windows: python run.py)
 // Plain CMake:     cmake -S . -B build && cmake --build build && ./build/app
 #include <graphics.h>
+
+// BGI's delay() polls SDL events and drops the close/quit ones, so a plain
+// kbhit() loop never ends when the window is closed or the program gets
+// Ctrl+C. An event watch sees exit events before anything can consume them.
+static volatile bool stop = false;
+
+static int on_event(void*, SDL_Event* event) {
+    if (event->type == SDL_QUIT ||
+        (event->type == SDL_WINDOWEVENT &&
+         event->window.event == SDL_WINDOWEVENT_CLOSE)) {
+        stop = true;
+    }
+    return 0;
+}
 
 int main() {
     int driver = DETECT;
     int mode = 0;
     initgraph(&driver, &mode, nullptr);
+    SDL_AddEventWatch(on_event, nullptr);
 
     const int w = getmaxx();
     const int h = getmaxy();
@@ -29,12 +45,13 @@ int main() {
     settextstyle(DEFAULT_FONT, HORIZ_DIR, 3);
     outtextxy(20, 20, const_cast<char*>("graphics.h on SDL_bgi"));
 
-    // Animate a ball bouncing inside the frame until a key is pressed.
+    // Animate a ball bouncing inside the frame until a key, the close button
+    // or SIGINT/SIGTERM stops it.
     const int radius = 18;
     int x = w / 4, y = h / 4;
     int dx = 6, dy = 4;
 
-    while (!kbhit()) {
+    while (!stop && !kbhit()) {
         setcolor(BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         fillellipse(x, y, radius, radius);

@@ -152,6 +152,12 @@ and run the `app` target. No IDE-specific project files needed.
 and press a key. Over SSH, `SDL_VIDEODRIVER=dummy ./build/app` runs without a
 display.
 
+**The window will not close** — SDL_bgi's `delay()` polls SDL events and throws
+away the close and quit ones, so `while (!kbhit())` never ends when the window
+manager closes the window or the program receives Ctrl+C. `src/main.cpp` shows
+the way out: an `SDL_AddEventWatch` callback sees those events before anything
+consumes them and ends the loop.
+
 **`initgraph` fails** — usually a missing display (`DISPLAY` unset over SSH) or
 a broken SDL2 install; `SDL_VIDEODRIVER=dummy ./build/app` tells them apart.
 
