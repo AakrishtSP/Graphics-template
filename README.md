@@ -27,7 +27,7 @@ Click **Use this template → Create a new repository**, then:
 git clone https://github.com/<you>/<your-repo> my-graphics-lab
 cd my-graphics-lab
 ./run.sh          # Linux / macOS / Git Bash
-.\run.ps1         # Windows PowerShell
+python run.py    # Windows (or anywhere with Python 3)
 ```
 
 The first configure downloads SDL_bgi (and SDL2, if you do not have it
@@ -99,7 +99,7 @@ which is this template without the graphics part.
 .
 ├── CMakeLists.txt        # single-file target + SDL_bgi wiring
 ├── CMakePresets.json     # default | release | import-std | make
-├── run.sh, run.ps1       # configure + build + run
+├── run.sh, run.py        # configure + build + run
 ├── src/main.cpp          # the demo: dusk sky, bouncing ball, press a key to exit
 ├── examples/hello.c      # plain C program, proves it all works from C too
 └── .vscode/              # settings, tasks, launch, IntelliSense, extensions
@@ -144,6 +144,7 @@ and run the `app` target. No IDE-specific project files needed.
 - GCC, Clang or MSVC (MinGW-w64 on Windows)
 - SDL2 development files, or let the template fetch them
 - Ninja (optional, recommended) and Git (to fetch SDL_bgi on first configure)
+- Python 3.8+ (only for `run.py`)
 
 ## Troubleshooting
 
