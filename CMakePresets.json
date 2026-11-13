@@ -1,0 +1,38 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Debug (Ninja)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "release",
+      "displayName": "Release (Ninja)",
+      "inherits": "default",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "import-std",
+      "displayName": "Debug + import std (C++23)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build-import-std",
+      "cacheVariables": { "IMPORT_STD": "ON", "CPP_STD": "23" }
+    },
+    {
+      "name": "make",
+      "displayName": "Debug (Unix Makefiles, no Ninja needed)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "default", "configurePreset": "default" },
+    { "name": "release", "configurePreset": "release" },
+    { "name": "import-std", "configurePreset": "import-std" },
+    { "name": "make", "configurePreset": "make" }
+  ]
+}

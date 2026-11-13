@@ -1,0 +1,15 @@
+# build output
+build/
+build-*/
+out/
+*.o
+*.obj
+*.exe
+*.out
+
+# editors / OS
+.idea/
+.vs/
+*.swp
+.DS_Store
+Thumbs.db

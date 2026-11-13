@@ -1,0 +1,32 @@
+{
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.generator": "Ninja",
+  "cmake.configureOnOpen": true,
+  "cmake.configureSettings": {
+    "CMAKE_BUILD_TYPE": "Debug",
+    "GRAPHICS": "ON"
+  },
+  "C_Cpp.default.cppStandard": "c++20",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/src",
+    "${workspaceFolder}/build/bgi_include"
+  ],
+  "C_Cpp.default.compilerArgs": [
+    "-Wall",
+    "-Wextra"
+  ],
+  "files.associations": {
+    "*.h": "cpp",
+    "*.inl": "cpp"
+  },
+  "files.exclude": {
+    "build": true,
+    "build-import-std": true
+  },
+  "search.exclude": {
+    "build": true,
+    "build-import-std": true
+  }
+}
